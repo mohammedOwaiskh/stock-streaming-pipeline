@@ -75,5 +75,5 @@ The **Stock Market Data Pipeline** is a real-time data engineering project desig
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
-For questions or feedback, reach out to [mohdowaiskh@gmail.com].
+For questions or feedback, reach out to mohdowaiskh@gmail.com.
 
