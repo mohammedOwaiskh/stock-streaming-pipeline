@@ -10,12 +10,9 @@ The **Stock Market Data Pipeline** is a real-time data engineering project desig
 - **Analytics and Visualization**: Generate insights and visualize trends using dashboards.
 - **Alerts**: Set up notifications for significant market movements.
 
-## Architecture
-![Pipeline Architecture](path/to/architecture-diagram.png)
-
 ### Components
 1. **Data Ingestion**:
-   - APIs: Alpha Vantage, Yahoo Finance, or IEX Cloud
+   - APIs: Finnhub
    - Kafka for streaming data
 
 2. **Data Processing**:
@@ -24,13 +21,10 @@ The **Stock Market Data Pipeline** is a real-time data engineering project desig
 
 3. **Data Storage**:
    - AWS S3 for raw and historical data
-   - Snowflake or Redshift for processed data
+   - AWS S3 for processed Data
 
 4. **Orchestration**:
    - Apache Airflow for managing ETL workflows
-
-5. **Visualization**:
-   - Tableau, Superset, or Power BI
 
 ## Getting Started
 
