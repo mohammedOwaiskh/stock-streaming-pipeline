@@ -36,17 +36,46 @@ def fetch_company_profile(symbol: str):
     return finnhub_client.company_profile2(symbol=symbol)
 
 
+def generate_mock_data():  #### For testing purpose
+    return {
+        "companyProfile": {
+            "country": "US",
+            "currency": "USD",
+            "exchange": "NASDAQ/NMS (GLOBAL MARKET)",
+            "ipo": "1980-12-12",
+            "marketCapitalization": 1415993,
+            "name": "Apple Inc",
+            "phone": "14089961010",
+            "shareOutstanding": 4375.47998046875,
+            "ticker": "AAPL",
+            "weburl": "https://www.apple.com/",
+            "logo": "https://static.finnhub.io/logo/87cb30d8-80df-11ea-8951-00000000092a.png",
+            "finnhubIndustry": "Technology",
+        },
+        "data": [
+            {
+                "p": 255.65,
+                "s": "AAPL",
+                "t": 1735451912469,
+                "v": 1300,
+            }
+        ],
+        "type": "trade",
+    }
+
+
 def on_message(ws, message):
     try:
         data = json.loads(message)
         if data["type"] != "ping":
-            symbol = data["data"]["s"]
             company_profile = fetch_company_profile(symbol)
             data["companyProfile"] = company_profile
-            kafka_producer.produce(
-                KAFKA_TOPIC, key=symbol, value=json.dumps(data).encode("utf-8")
-            )
-            print(f"Produced message to topic: {KAFKA_TOPIC}")
+        else:
+            data = generate_mock_data()
+        symbol = data["data"][0]["s"]
+        kafka_producer.produce(KAFKA_TOPIC, key=symbol, value=json.dumps(data).encode())
+        kafka_producer.flush()
+        print(f"Produced message to topic: {KAFKA_TOPIC}")
     except Exception as e:
         print(f"Error in processing message: {e}")
 
