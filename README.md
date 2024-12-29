@@ -33,7 +33,7 @@ The **Stock Market Data Pipeline** is a real-time data engineering project desig
 - Kafka
 - PySpark
 - AWS account with S3 access
-- API key for [Finnhub](finnhub.io) account
+- API key for [Finnhub](https://finnhub.io/) account
 
 ### Installation
 1. Clone the repository:
@@ -47,13 +47,14 @@ The **Stock Market Data Pipeline** is a real-time data engineering project desig
    pip install -r requirements.txt
    ```
 
-3. Set up environment variables:
+3. Set up environment variables in `configurations/applications.conf`:
    - `KAFKA_BROKER_URL`
    - `AWS_ACCESS_KEY_ID`
    - `AWS_SECRET_ACCESS_KEY`
    - `STOCK_API_KEY`
 
 ### Running the Pipeline
+
 1. Start Kafka:
    ```bash
    ./bin/kafka-server-start.sh config/server.properties
