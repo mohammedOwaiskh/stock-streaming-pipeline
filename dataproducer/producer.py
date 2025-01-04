@@ -1,3 +1,5 @@
+import __root__
+
 import json
 import os
 import sys
@@ -7,8 +9,8 @@ from confluent_kafka import Producer
 from finnhub import Client
 
 # Add the parent directory to the Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from utils import configutils
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# from utils import configutils
 
 BOOTSTRAP_SERVERS = configutils.read_application_config("KAFKA_BROKER_URL")
 API_TOKEN = configutils.read_application_config("STOCK_API_KEY")
