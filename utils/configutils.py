@@ -1,4 +1,5 @@
 import configparser
+import os
 
 from pyspark import SparkConf
 
@@ -24,9 +25,8 @@ def read_application_config(
         [('host', 'localhost'), ('port', '5432')]
     """
     config = configparser.ConfigParser()
-    config.read("configurations\\applications.conf")
+    config_file_path = os.path.join(
+        os.path.dirname(__file__), "..", "configurations", "applications.conf"
+    )
+    config.read(config_file_path)
     return config.items(section) if key is None else config[section][key]
-
-
-if __name__ == "__main__":
-    print(read_application_config())
